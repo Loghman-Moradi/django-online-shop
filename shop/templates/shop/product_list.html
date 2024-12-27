@@ -1,0 +1,10 @@
+{% extends 'parent/base.html' %}
+{% block title %} products {% endblock %}
+{% block content %}
+    {% for product in products %}
+        <img width="200" height="150" src="{{ product.images.first.image_file.url }}">
+        <br>
+        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+        <br>
+    {% endfor %}
+{% endblock %}

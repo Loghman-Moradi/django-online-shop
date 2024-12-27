@@ -1,0 +1,12 @@
+{% extends 'parent/base.html' %}
+{% block title %} product detail {% endblock %}
+{% block content %}
+    {% for img in product.images.all %}
+        <img width="150" height="150" src="{{ img.image_file.url }}">
+    {% endfor %}
+    <img src="{{ product.images.image_file.url }}">
+    <p>اسم محصول :{{ product.name }}</p>
+    <p>توضیحات :{{ product.description }}</p>
+    <p>قیمت :{{ product.price }}</p>
+    <p>قیمت پس از تخفیف :{{ product.new_price }}</p>
+{% endblock %}
