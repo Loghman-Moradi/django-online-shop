@@ -1,0 +1,47 @@
+<h2>Your chosen products</h2>
+
+<ul>
+    {% for item in cart %}
+        <li>
+            {{ item.quantity }} X {{ item.product.name }} =>
+            {{ item.total }}
+        </li>
+    {% endfor %}
+</ul>
+
+<!-- ———————————————————————————————————————————————————————— -->
+
+<h2>Complete the order information</h2>
+
+
+<form method="post" id="orderForm">
+    {% csrf_token %}
+    {% if addresses %}
+        <h3>Your registered addresses</h3>
+        <hr>
+        {% for address in addresses %}
+            <label>
+                <input type="radio" name="selected_address" value="{{ address.id }}" onclick="submitForm()">
+                <h4>{{ address.address_line }}</h4>
+                <p>{{ address.first_name }} {{ address.last_name }}</p>
+                <p>{{ address.phone_number }}</p>
+                <p>{{ address.postal_code }}</p>
+            </label>
+            <br><br>
+            <a href="{% url 'account:edit_address' address.id %}">edit address</a>
+            <hr>
+        {% endfor %}
+    {% else %}
+        {{ form.as_p }}
+        <input type="submit" value="next">
+    {% endif %}
+
+    <button type="submit" style="display:none;" id="submitOrderButton">next</button>
+</form>
+
+<script>
+    function submitForm() {
+        document.getElementById('submitOrderButton').click();
+    }
+</script>
+

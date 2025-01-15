@@ -23,6 +23,15 @@
 
     <button id="add-cart" type="button">افزودن به سبد خرید</button>
 
+    <hr>
+    {% for product in similar_products %}
+        <img width="100" height="100" src="{{ product.images.first.image_file.url }}">
+        <br>
+        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+        <br>
+        <p>new price: {{ product.new_price }}</p>
+    {% endfor %}
+
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

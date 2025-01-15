@@ -1,0 +1,16 @@
+{% extends 'parent/base.html' %}
+{% block title %}address{% endblock %}
+{% block content %}
+    <a href="{% url 'account:add_address' %}">افزودن آدرس جدید</a>
+    {% if my_address %}
+        {% for address in my_address %}
+        <h4><a href="{% url 'account:address_detail' address.pk %}">{{ address.address_line }}</a></h4>
+        <p>{{ address.postal_code }}</p>
+        <p>{{ address.phone_number }}</p>
+        <p>{{ address.first_name }} {{ address.last_name }}</p>
+        <hr>
+    {% endfor %}
+    {% else %}
+        <p>هنوز هیچ آدرسی ثبت نشده است</p>
+    {% endif %}
+{% endblock %}

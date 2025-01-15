@@ -1,0 +1,13 @@
+{% extends 'parent/base.html' %}
+{% block title %}add address{% endblock %}
+{% block content %}
+    {% for message in messages %}
+        <h3>{{ message }}</h3>
+    {% endfor %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="ذخیره">
+    </form>
+{% endblock %}

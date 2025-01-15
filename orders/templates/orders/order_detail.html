@@ -1,0 +1,40 @@
+{% extends 'parent/base.html' %}
+
+{% load static %}
+{% block title %}order detail{% endblock %}
+
+{% block content %}
+    <h1>سفارش {{ order.id }}</h1>
+
+    <h2>order item's</h2>
+    <div class="products">
+        {% for order_item in order_items %}
+            <div class="product">
+                <img src="{{ order_item.product.images.first.image_file.url }}" alt="" width="150px">
+                <h3>{{ order_item.product.name }}</h3>
+                <span>{{ order_item.quantity }} X {{ order_item.price }} => {{ order_item.get_cost }}</span>
+                <br>
+                <a href="{% url 'orders:return_product' order_item.id %}">returned</a>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <div class="info">
+        <h2>order info</h2>
+
+        <p>first name: {{ order.order.address.first_name }}</p>
+        <p>last name: {{ order.order.address.last_name }}</p>
+        <p>phone: {{ order.order.address.phone_number }}</p>
+
+        <p>province: {{ order.order.address.province }}</p>
+        <p>city: {{ order.order.address.city }}</p>
+        <p>full address: {{ order.order.address.address_line }}</p>
+        <p>postal code: {{ order.order.address.postal_code }}</p>
+    </div>
+    <a href="{% url 'orders:order_invoice' order.id %}">Download the order invoice</a>
+    <br>
+
+{% endblock %}

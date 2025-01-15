@@ -1,0 +1,2196 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2024-12-22T13:03:11.765Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "موبایل",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2024-12-22T13:05:06.725Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0648\\u06cc\\u0698\\u06af\\u06cc\", \"object\": \"\\u0631\\u0646\\u06af:\\u0645\\u0634\\u06a9\\u06cc\"}}, {\"added\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2024-12-22T13:08:12.751Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u062a\\u062e\\u0641\\u06cc\\u0641\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2024-12-22T13:09:19.617Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u062a\\u062e\\u0641\\u06cc\\u0641\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2024-12-23T07:11:23.349Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2024-12-23T07:13:59.888Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2024-12-23T07:25:49.782Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2024-12-23T07:28:29.178Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2024-12-23T07:34:38.203Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2024-12-23T07:36:15.814Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2024-12-23T07:40:27.181Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2024-12-23T08:00:08.008Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2024-12-23T08:00:59.338Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2024-12-23T08:03:48.107Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0645\\u0648\\u0628\\u0627\\u06cc\\u0644\", \"fields\": [\"Image file\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2024-12-23T11:31:47.625Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "لوازم جانبی",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2024-12-23T14:39:04.062Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "هندزفری:",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0648\\u06cc\\u0698\\u06af\\u06cc\", \"object\": \"\\u0631\\u0646\\u06af:\\u0645\\u0634\\u06a9\\u06cc\"}}, {\"added\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0647\\u0646\\u062f\\u0632\\u0641\\u0631\\u06cc\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2024-12-23T14:39:16.211Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Category\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2024-12-23T14:59:15.664Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"product_image/24/12/23/download_2_U98XjBR.jpg\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2024-12-23T14:59:57.089Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"added\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"product_image/24/12/23/download.png\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2024-12-27T18:11:13.301Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2024-12-27T18:36:30.799Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2024-12-27T18:39:14.366Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2024-12-28T15:34:41.494Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2024-12-28T15:41:48.955Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "هندزفری:",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2024-12-28T15:42:00.256Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2024-12-28T15:44:40.796Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "هندزفری:",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0648\\u06cc\\u0698\\u06af\\u06cc\", \"object\": \"\\u0631\\u0646\\u06af:\\u0645\\u0634\\u06a9\\u06cc\"}}, {\"added\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"\\u0647\\u0646\\u062f\\u0632\\u0641\\u0631\\u06cc\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2024-12-28T16:28:02.691Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"\\u0648\\u06cc\\u0698\\u06af\\u06cc\", \"object\": \"\\u0631\\u0646\\u06a9:\\u0627\\u0628\\u06cc\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2024-12-28T16:28:29.329Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2024-12-28T16:29:04.101Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "4",
+        "object_repr": "موبایل شیاومی 11تی:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}, {\"added\": {\"name\": \"\\u062a\\u0635\\u0627\\u0648\\u06cc\\u0631\", \"object\": \"product_image/24/12/28/xiaomi-11t-pro-600x600.jpg\"}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2024-12-28T16:34:35.960Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2024-12-28T17:43:06.465Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "3",
+        "object_repr": "هندزفری:",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"\\u0648\\u0632\\u0646\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2024-12-29T17:12:11.629Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "09184517699",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2024-12-29T18:29:55.175Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "2",
+        "object_repr": "09102369615",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2024-12-30T12:54:13.371Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "4",
+        "object_repr": "09184517619",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2024-12-30T12:54:13.371Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "3",
+        "object_repr": "09184517699",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2024-12-30T13:07:16.405Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "5",
+        "object_repr": "09184517699",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2024-12-30T15:05:17.890Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "4",
+        "object_repr": "order: 4",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2024-12-30T15:05:17.890Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "3",
+        "object_repr": "order: 3",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2024-12-30T15:05:17.890Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "1",
+        "object_repr": "order: 1",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "19",
+        "object_repr": "order: 19",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "18",
+        "object_repr": "order: 18",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "17",
+        "object_repr": "order: 17",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "16",
+        "object_repr": "order: 16",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "15",
+        "object_repr": "order: 15",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "14",
+        "object_repr": "order: 14",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "13",
+        "object_repr": "order: 13",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "12",
+        "object_repr": "order: 12",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "11",
+        "object_repr": "order: 11",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "10",
+        "object_repr": "order: 10",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "9",
+        "object_repr": "order: 9",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "8",
+        "object_repr": "order: 8",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "7",
+        "object_repr": "order: 7",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "6",
+        "object_repr": "order: 6",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "5",
+        "object_repr": "order: 5",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2024-12-30T17:17:26.485Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "2",
+        "object_repr": "order: 2",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2024-12-30T17:46:37.886Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "7",
+        "object_repr": "09102369615",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2024-12-30T17:46:37.886Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "8",
+        "object_repr": "09184517619",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2024-12-30T17:46:37.886Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "6",
+        "object_repr": "09184517699",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 59,
+    "fields": {
+        "action_time": "2024-12-30T17:47:58.094Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "22",
+        "object_repr": "order: 22",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 60,
+    "fields": {
+        "action_time": "2024-12-30T17:47:58.094Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "21",
+        "object_repr": "order: 21",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 61,
+    "fields": {
+        "action_time": "2024-12-30T17:47:58.094Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "20",
+        "object_repr": "order: 20",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 62,
+    "fields": {
+        "action_time": "2024-12-31T17:49:24.159Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "10",
+        "object_repr": "09102369615",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 63,
+    "fields": {
+        "action_time": "2024-12-31T17:49:24.159Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "11",
+        "object_repr": "09184517619",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 64,
+    "fields": {
+        "action_time": "2024-12-31T17:49:24.159Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "9",
+        "object_repr": "09184517699",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 65,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "31",
+        "object_repr": "order: 31",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 66,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "30",
+        "object_repr": "order: 30",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 67,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "29",
+        "object_repr": "order: 29",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 68,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "28",
+        "object_repr": "order: 28",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 69,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "27",
+        "object_repr": "order: 27",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 70,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "26",
+        "object_repr": "order: 26",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 71,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "25",
+        "object_repr": "order: 25",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 72,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "24",
+        "object_repr": "order: 24",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 73,
+    "fields": {
+        "action_time": "2024-12-31T17:49:36.935Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "23",
+        "object_repr": "order: 23",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 74,
+    "fields": {
+        "action_time": "2024-12-31T17:53:00.173Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "32",
+        "object_repr": "order: 32",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 75,
+    "fields": {
+        "action_time": "2024-12-31T18:05:38.294Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "12",
+        "object_repr": "09184517699",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 76,
+    "fields": {
+        "action_time": "2024-12-31T18:09:45.111Z",
+        "user": 1,
+        "content_type": 12,
+        "object_id": "33",
+        "object_repr": "order: 33",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 77,
+    "fields": {
+        "action_time": "2025-01-04T15:48:15.821Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "17",
+        "object_repr": "09919358086",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 78,
+    "fields": {
+        "action_time": "2025-01-04T15:50:38.059Z",
+        "user": 1,
+        "content_type": 11,
+        "object_id": "15",
+        "object_repr": "09184517699",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Address\"]}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add دسته بندی",
+        "content_type": 7,
+        "codename": "add_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change دسته بندی",
+        "content_type": 7,
+        "codename": "change_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete دسته بندی",
+        "content_type": 7,
+        "codename": "delete_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view دسته بندی",
+        "content_type": 7,
+        "codename": "view_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add محصول",
+        "content_type": 8,
+        "codename": "add_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change محصول",
+        "content_type": 8,
+        "codename": "change_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete محصول",
+        "content_type": 8,
+        "codename": "delete_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view محصول",
+        "content_type": 8,
+        "codename": "view_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add تصاویر",
+        "content_type": 9,
+        "codename": "add_images"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change تصاویر",
+        "content_type": 9,
+        "codename": "change_images"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete تصاویر",
+        "content_type": 9,
+        "codename": "delete_images"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view تصاویر",
+        "content_type": 9,
+        "codename": "view_images"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add ویژگی",
+        "content_type": 10,
+        "codename": "add_productfeatures"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change ویژگی",
+        "content_type": 10,
+        "codename": "change_productfeatures"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete ویژگی",
+        "content_type": 10,
+        "codename": "delete_productfeatures"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view ویژگی",
+        "content_type": 10,
+        "codename": "view_productfeatures"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 11,
+        "codename": "add_shopuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 11,
+        "codename": "change_shopuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 11,
+        "codename": "delete_shopuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 11,
+        "codename": "view_shopuser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add order",
+        "content_type": 12,
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change order",
+        "content_type": 12,
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete order",
+        "content_type": 12,
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view order",
+        "content_type": 12,
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add order item",
+        "content_type": 13,
+        "codename": "add_orderitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change order item",
+        "content_type": 13,
+        "codename": "change_orderitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete order item",
+        "content_type": 13,
+        "codename": "delete_orderitem"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view order item",
+        "content_type": 13,
+        "codename": "view_orderitem"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "shop",
+        "model": "category"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "shop",
+        "model": "product"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "shop",
+        "model": "images"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "shop",
+        "model": "productfeatures"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "account",
+        "model": "shopuser"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "orders",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "orders",
+        "model": "orderitem"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "3h5owpij6pxz25un8dipuykjokfwg2yw",
+    "fields": {
+        "session_data": ".eJxVjU1uxCAMhe_idRSZAAGy7L5niIhxBtqKTAlpVY1y9xJpNuOFF-97Pw8gXypMD1DX-z58rqn-wSQ6uJdEDNOAdsB2HfxyusVmxvPsYPZHjfOxc5lTgAmEghdx8fTJ-SLhw-fb1tOWa0lLf1n6J9379y3w19vT-1IQ_R5b2otVjmtga5hGowNjYBnEqmVAlJ6RSLOSjMZY6c0wOseOUAvFhrVeWukPl7Qm8jVteaY22Gr1KK0bGrzHLV8COmGVFqbl4fwHl4FXvA:1tTmqT:LYwydUY2A6hkFQtQacbWztmGAWSSaR9ufU7bTX9IxX4",
+        "expire_date": "2025-01-17T18:56:29.180Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "7ie87l6x6idce3051ord6s9eisthd2j2",
+    "fields": {
+        "session_data": ".eJx1zLGOgzAMBuB38YyQY6dNxNi9z4ASO5TcVdBC0OlU8e4FqQtDPXjw__1-gYSpQPMCu6_nEoaSyz80poLHlCVBQ-gJt6ngL-Vbv2FcK-Bv3Fg2B31CXLdCG5bSt8ucpjYrNGAQDscY5DcNe6I_YbiNtYxDmXKsd1J_0rm-jprul489POjD3G_tjpwzrtNOyLIysTHIelYTVBwzyRnRe3XeW0qn6CQwOUVB66PvIsH6BgOpVkE:1tSdje:AFJrubqKcS1E4t4CONLwj1qU7hrM8XqvnStAbvLcKi4",
+        "expire_date": "2025-01-14T15:00:42.132Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "cxpetvspqqghgibxh1bcb2ft6emk53s1",
+    "fields": {
+        "session_data": "eyJjYXJ0Ijp7fSwidmVyaWZpY2F0aW9uX2NvZGUiOiIxMDQ3MzkiLCJwaG9uZSI6IjA5MTg0NTE3Njk5In0:1tRwkQ:62MPttflGi7kERp-vL9TU7uyQOFOoSZ7-jzhbKUUzYA",
+        "expire_date": "2025-01-12T17:06:38.998Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fmn6zxeg6eck6z0tj05kxt4o3dphkq9f",
+    "fields": {
+        "session_data": "eyJjYXJ0Ijp7fSwidmVyaWZpY2F0aW9uX2NvZGUiOiI0NzI1MTgiLCJwaG9uZSI6IjA5MjE0MjQ5OTUwIn0:1tRwjD:KXSR2-vH4fLdPd2jixu2F7N7AFSDV3jxppcOSr7onYg",
+        "expire_date": "2025-01-12T17:05:23.290Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "fz75q4g4ewnd7ocajmhou76owhz9m36h",
+    "fields": {
+        "session_data": "eyJjYXJ0Ijp7fSwidmVyaWZpY2F0aW9uX2NvZGUiOiIxNjI3NTMiLCJwaG9uZSI6IjA5MTg0NTE3Njk5In0:1tRwgK:Y-Rgx6V3gSrRV08gKevu1DWFjTO5nVkOEdij_TaWJbU",
+        "expire_date": "2025-01-12T17:02:24.106Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "mof9ndrecmc8heekyfldf1s2n3sai98c",
+    "fields": {
+        "session_data": ".eJxtjstOxDAMRf8l66rKc9J0yZ5vqBzXnQRQAmkKQqP-O4k0SIzExot7j499YwscNSzHTmWJK5uZYMPfzAO-UurF-gLpmkfMqZbox46M93Yfn_NKb0939kEQYA9t-6LRrhMaxYEm5YTaFAmyuBkP22qMNdYDodFNqQickgAXCY6j99MG1KSfVOIWEWrMacF2sGkNt071l99DTj3gTgottXOGtxShVDbfmOzj44BUY_1ms2h8idh4oZXgnA_sK15DQ_k5MPUIy39g-qXP8wfOOWVj:1tRZXT:2ZkkgbsMbVc9ckNbddDKbSeAXIHxVEoPnlLzuLIN5Vc",
+        "expire_date": "2025-01-11T16:19:43.384Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "rcxhxpljak829q3cc7ponj3xpw9l77g0",
+    "fields": {
+        "session_data": ".eJxVjDEOgzAMRe_iuYoIwcYwdu8ZkImtQluBBGFC3L1EYmF97_2_Q5QlQbsfD-hkS0O3rbZ0o0ILHuEGe4lfm7LRj0zv2cV5SsvYu5y4y67uNav9nld7OxhkHfKamRgbJA7kI6HXSqSsC9FQN4zB6kgagj9JFY16QcVTW2ElERUMxx8oCjo_:1tVCnO:l8Aukc9ajFYOTqp29iSmOccEJl6xAxmqWl1bMnBun5o",
+        "expire_date": "2025-01-21T16:51:10.805Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "xfmfh565snhy6huvn75dcgu76l4m5wes",
+    "fields": {
+        "session_data": "eyJjYXJ0Ijp7fSwidmVyaWZpY2F0aW9uX2NvZGUiOiIwMzc1ODQiLCJwaG9uZSI6IjA5MTg0NTE3Njk5In0:1tRwfJ:ZX-tJqSisr13UTXXUJg4URLcRgoH13C-dEBMEtIoWJo",
+        "expire_date": "2025-01-12T17:01:21.201Z"
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+        "name": "موبایل",
+        "slug": "mobile"
+    }
+},
+{
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+        "name": "لوازم جانبی",
+        "slug": "lavazem"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+        "category": 2,
+        "name": "هندزفری",
+        "slug": "handzferi",
+        "description": "هندزفری بی سیم هایلو",
+        "inventory": 10,
+        "weight": 500,
+        "price": 1450000,
+        "offers": 19000,
+        "new_price": 1431000,
+        "created_at": "1403-10-08 19:14:40.792372+0000",
+        "updated_at": "1403-10-08 21:13:06.463899+0000"
+    }
+},
+{
+    "model": "shop.product",
+    "pk": 4,
+    "fields": {
+        "category": 1,
+        "name": "موبایل شیاومی 11تی",
+        "slug": "mobile",
+        "description": "موبایل شیاومی 256 رم 8",
+        "inventory": 11,
+        "weight": 0,
+        "price": 21000000,
+        "offers": 180000,
+        "new_price": 20820000,
+        "created_at": "1403-10-08 19:58:02.684357+0000",
+        "updated_at": "1403-10-08 19:59:04.91334+0000"
+    }
+},
+{
+    "model": "shop.productfeatures",
+    "pk": 3,
+    "fields": {
+        "name": "رنگ",
+        "value": "مشکی",
+        "product": 3
+    }
+},
+{
+    "model": "shop.productfeatures",
+    "pk": 4,
+    "fields": {
+        "name": "رنک",
+        "value": "ابی",
+        "product": 4
+    }
+},
+{
+    "model": "shop.images",
+    "pk": 5,
+    "fields": {
+        "product": 3,
+        "image_file": "product_image/24/12/28/download_12.jpg",
+        "title": "هندزفری",
+        "description": "",
+        "created_at": "1403-10-08 19:14:40.794470+0000"
+    }
+},
+{
+    "model": "shop.images",
+    "pk": 6,
+    "fields": {
+        "product": 4,
+        "image_file": "product_image/24/12/28/xiaomi-11t-pro-600x600.jpg",
+        "title": "",
+        "description": "",
+        "created_at": "1403-10-08 19:59:04.101413+0000"
+    }
+},
+{
+    "model": "account.shopuser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$JIO9Jmaz4KVJd2zoyoca7A$rWAfTtqwrYyklYedaxVwin46ZfFCktI+5tDukeitKrQ=",
+        "last_login": "2025-01-04T15:48:03.068Z",
+        "is_superuser": true,
+        "phone": "09214249950",
+        "first_name": "",
+        "last_name": "",
+        "address": "",
+        "is_active": true,
+        "is_staff": true,
+        "date_joined": "2024-12-23T16:59:36.275Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.shopuser",
+    "pk": 13,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$4HpW0n36UgkkQj1Qw8y5Tk$jKLAGycqOm5jA9Am+0xbohvu/3YIccBQjGmzNSUMEo4=",
+        "last_login": "2025-01-01T16:40:20.700Z",
+        "is_superuser": false,
+        "phone": "09184517619",
+        "first_name": "",
+        "last_name": "",
+        "address": "",
+        "is_active": true,
+        "is_staff": false,
+        "date_joined": "2024-12-31T18:18:38.173Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.shopuser",
+    "pk": 14,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$XCbOAKFf7fVPane4Bm6MiP$ccUwCreHd5GXlvL1fk/dU1f2+DKQmqczRyUKui0VMIc=",
+        "last_login": "2025-01-03T17:03:36.088Z",
+        "is_superuser": false,
+        "phone": "09102369615",
+        "first_name": "",
+        "last_name": "",
+        "address": "",
+        "is_active": true,
+        "is_staff": false,
+        "date_joined": "2025-01-01T16:27:49.006Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.shopuser",
+    "pk": 15,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$aOz2FVfAU8RaKT4QV2khCS$u2AbaAnyL9YRXZSyiTYRFIc28q6QXrtcw7c5VOFd7vo=",
+        "last_login": "2025-01-04T15:52:29.521Z",
+        "is_superuser": false,
+        "phone": "09184517699",
+        "first_name": "نازنین",
+        "last_name": "علیاری",
+        "address": "شیراز-شهرراز-خیابان حافظ- پلاک 17- واحد 4",
+        "is_active": true,
+        "is_staff": false,
+        "date_joined": "2025-01-01T16:35:46Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "account.shopuser",
+    "pk": 16,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$UOhkppp8M0Q6BluU2WgW8B$ZkF5Q5BZqCId6wIeUSSGqyP1OOsOsvz/aM9hZciL+Lo=",
+        "last_login": "2025-01-02T16:40:46.048Z",
+        "is_superuser": false,
+        "phone": "09123456789",
+        "first_name": "",
+        "last_name": "",
+        "address": "",
+        "is_active": true,
+        "is_staff": false,
+        "date_joined": "2025-01-01T17:57:41.899Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 34,
+    "fields": {
+        "buyer": 1,
+        "first_name": "نازنین",
+        "last_name": "علیاری",
+        "phone": "09102369615",
+        "address": "شیراز",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-11 21:40:01.152216+0000",
+        "updated_at": "1403-10-11 21:40:01.152216+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 35,
+    "fields": {
+        "buyer": 13,
+        "first_name": "نیلا",
+        "last_name": "خدایی",
+        "phone": "09214249950",
+        "address": "تهران, صادقیه",
+        "postal_code": "1234567890",
+        "province": "تهران",
+        "city": "تهران",
+        "paid": false,
+        "created_at": "1403-10-11 21:48:51.517948+0000",
+        "updated_at": "1403-10-11 21:48:51.517948+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 36,
+    "fields": {
+        "buyer": 14,
+        "first_name": "آرن",
+        "last_name": "امینی",
+        "phone": "09214249950",
+        "address": "dd",
+        "postal_code": "2365478911",
+        "province": "تهران",
+        "city": "تهران",
+        "paid": false,
+        "created_at": "1403-10-12 19:57:55.699161+0000",
+        "updated_at": "1403-10-12 19:57:55.699161+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 37,
+    "fields": {
+        "buyer": 15,
+        "first_name": "نازنین",
+        "last_name": "علیاری",
+        "phone": "09102369615",
+        "address": "شیراز",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-12 20:05:51.721179+0000",
+        "updated_at": "1403-10-12 20:05:51.721179+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 38,
+    "fields": {
+        "buyer": 13,
+        "first_name": "نازنین",
+        "last_name": "علیاری",
+        "phone": "09102369615",
+        "address": "شیراز",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-12 20:10:25.60457+0000",
+        "updated_at": "1403-10-12 20:10:25.60457+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 39,
+    "fields": {
+        "buyer": 15,
+        "first_name": "محمد",
+        "last_name": "محمدی",
+        "phone": "09184517619",
+        "address": "شیراز شهر راز",
+        "postal_code": "1234567890",
+        "province": "تهران",
+        "city": "تهران",
+        "paid": false,
+        "created_at": "1403-10-12 20:14:05.588481+0000",
+        "updated_at": "1403-10-12 20:14:05.589488+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 40,
+    "fields": {
+        "buyer": 16,
+        "first_name": "محمد",
+        "last_name": "محمدی",
+        "phone": "09184517699",
+        "address": "ffffffff",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-12 21:27:49.782346+0000",
+        "updated_at": "1403-10-12 21:27:49.784352+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 41,
+    "fields": {
+        "buyer": 16,
+        "first_name": "محمد",
+        "last_name": "محمدی",
+        "phone": "09184517619",
+        "address": "شیراز شهر راز",
+        "postal_code": "1234567890",
+        "province": "تهران",
+        "city": "تهران",
+        "paid": false,
+        "created_at": "1403-10-12 21:29:23.472084+0000",
+        "updated_at": "1403-10-12 21:29:23.472084+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 42,
+    "fields": {
+        "buyer": 16,
+        "first_name": "محمد",
+        "last_name": "محمدی",
+        "phone": "09184517619",
+        "address": "شیراز شهر راز",
+        "postal_code": "1234567890",
+        "province": "تهران",
+        "city": "تهران",
+        "paid": false,
+        "created_at": "1403-10-12 21:33:36.789774+0000",
+        "updated_at": "1403-10-12 21:33:36.789774+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 43,
+    "fields": {
+        "buyer": 16,
+        "first_name": "محمد",
+        "last_name": "محمدی",
+        "phone": "09184517699",
+        "address": "ffffffff",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-12 21:38:48.305441+0000",
+        "updated_at": "1403-10-12 21:38:48.305441+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 44,
+    "fields": {
+        "buyer": 16,
+        "first_name": "نازنین",
+        "last_name": "علیاری",
+        "phone": "09102369615",
+        "address": "شیراز",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-13 19:15:38.581666+0000",
+        "updated_at": "1403-10-13 19:15:38.581666+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 45,
+    "fields": {
+        "buyer": 1,
+        "first_name": "نازنین",
+        "last_name": "علیاری",
+        "phone": "09102369615",
+        "address": "شیراز",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-13 19:16:35.684718+0000",
+        "updated_at": "1403-10-13 19:16:35.684718+0000"
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 46,
+    "fields": {
+        "buyer": 15,
+        "first_name": "نازنین",
+        "last_name": "علیاری",
+        "phone": "09102369615",
+        "address": "شیراز",
+        "postal_code": "2364777722",
+        "province": "فارس",
+        "city": "شیراز",
+        "paid": false,
+        "created_at": "1403-10-13 19:18:54.10360+0000",
+        "updated_at": "1403-10-13 19:18:54.10360+0000"
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 33,
+    "fields": {
+        "order": 34,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 34,
+    "fields": {
+        "order": 35,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 35,
+    "fields": {
+        "order": 36,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 36,
+    "fields": {
+        "order": 37,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 37,
+    "fields": {
+        "order": 38,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 38,
+    "fields": {
+        "order": 39,
+        "product": 3,
+        "quantity": 1,
+        "price": 1431000,
+        "weight": 500
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 39,
+    "fields": {
+        "order": 40,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 40,
+    "fields": {
+        "order": 41,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 41,
+    "fields": {
+        "order": 42,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 42,
+    "fields": {
+        "order": 43,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 43,
+    "fields": {
+        "order": 44,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 44,
+    "fields": {
+        "order": 45,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+},
+{
+    "model": "orders.orderitem",
+    "pk": 45,
+    "fields": {
+        "order": 46,
+        "product": 4,
+        "quantity": 1,
+        "price": 20820000,
+        "weight": 0
+    }
+}
+]

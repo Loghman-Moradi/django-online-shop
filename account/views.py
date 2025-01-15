@@ -1,67 +1,101 @@
 import random
 from django.contrib import messages
-from django.contrib.auth import login
-from django.shortcuts import render, redirect
-from .common.kave_sms import send_sms_with_template, send_sms_normal
+from django.contrib.auth import login, logout
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from .form import *
-from .models import ShopUser
+from django.contrib.auth.decorators import login_required
+from shop.utils import verify_code_base, verify_phone_base
 
 
 def verify_phone(request):
-    if request.method == "POST":
-        form = PhoneVerificationForm(request.POST)
-        if form.is_valid():
-            phone = form.cleaned_data['phone_number']
-
-            code = ''.join(random.sample('1234567890', 6))
-            tokens = {'token': code}
-
-            request.session['verification_code'] = code
-            request.session['phone'] = phone
-
-            send_sms_with_template(phone, tokens, 'user-login')
-            messages.success(request, 'Your verification code has been sent.')
-            return redirect('account:verify_code')
-    else:
-        form = PhoneVerificationForm()
-
-    context = {
-        'form': form
-    }
-    return render(request, 'form/verify_phone.html', context)
+    return verify_phone_base(request, PhoneVerificationForm, 'form/verify_phone.html', 'account:verify_code')
 
 
 def verify_code(request):
+    return verify_code_base(request, 'shop:products')
+
+
+def log_out(request):
+    logout(request)
+    return redirect('account:verify_phone')
+
+
+@login_required
+def profile(request):
+    user = request.user
+    return render(request, 'form/profile.html', {'user': user})
+
+
+@login_required
+def address(request):
+    user = request.user
+    my_address = Address.objects.filter(user=user)
+    context = {
+        'my_address': my_address,
+    }
+    return render(request, 'form/my_address.html', context)
+
+
+@login_required
+def add_address(request):
     if request.method == "POST":
-        received_code = request.POST.get('code')
-        if received_code:
-            verification_code = request.session['verification_code']
-            phone = request.session['phone']
-            if received_code == verification_code:
-                if ShopUser.objects.filter(phone=phone).exists():
-                    user = ShopUser.objects.get(phone=phone)
-                else:
-                    character = "QWERTYUIOPASDFGHJKLZXCVBNM-0123456789-@_qwertyuiopasdfghjklzxcvbnm"
-                    user_password = ''.join(random.sample(character, 8))
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            address = Address.objects.create(
+                user=request.user,
+                first_name=cd['first_name'],
+                last_name=cd['last_name'],
+                phone_number=cd['phone_number'],
+                province=cd['province'],
+                city=cd['city'],
+                postal_code=cd['postal_code'],
+                unit=cd['unit'],
+                plate=cd['plate'],
+                address_line=cd['address_line'],
 
-                    user = ShopUser.objects.create_user(phone=phone)
-                    user.set_password(user_password)
-                    user.save()
+            )
 
-                login(request, user)
-                del request.session[verification_code]
-                del request.session['phone']
-        else:
-            messages.success(request, 'Your verification code has been sent.')
-    return redirect('shop:products')
-
-
-
-
-
-
+            address.save()
+            messages.success(request, 'Your address has been added.')
+    else:
+        form = AddressForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'form/address_form.html', context)
 
 
+def address_detail(request, pk):
+    my_address = get_object_or_404(Address, pk=pk, user=request.user)
+    context = {
+        'my_address': my_address,
+    }
+
+    return render(request, 'form/address_detail.html', context)
+
+
+def edit_address(request, pk):
+    address = get_object_or_404(Address, pk=pk, user=request.user)
+    if request.method == "POST":
+        form = AddressForm(request.POST, instance=address)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your address has been updated.')
+    else:
+        form = AddressForm(instance=address)
+    context = {
+        'form': form,
+        'address': address,
+    }
+    return render(request, 'form/edit_address.html', context)
+
+
+def delete_address(request, pk):
+    address = get_object_or_404(Address, pk=pk, user=request.user)
+    address.delete()
+    return redirect('account:address')
 
 
 
@@ -71,64 +105,4 @@ def verify_code(request):
 
 
 
-
-
-
-
-
-
-
-
-
-# def verify_phone(request):
-#     if request.method == "POST":
-#         form = PhoneVerificationForm(request.POST)
-#         if form.is_valid():
-#             phone = form.cleaned_data.get('phone_number')
-#
-#             code = ''.join(random.sample("0123456789", 6))
-#             tokens = {'token': code}
-#
-#             request.session['verification_code'] = code
-#             request.session['phone'] = phone
-#
-#             send_sms_with_template(phone, tokens, 'user-login')
-#             messages.success(request, 'Your verification code has been sent.')
-#             return redirect('account:verify_code')
-#     else:
-#         form = PhoneVerificationForm()
-#     context = {
-#         'form': form,
-#     }
-#     return render(request, 'form/verify_phone.html', context)
-#
-#
-# def verify_code(request):
-#     if request.method == "POST":
-#         received_code = request.POST.get('code')
-#         if received_code:
-#             verification_code = request.session['verification_code']
-#             phone = request.session['phone']
-#
-#             if received_code == verification_code:
-#                 if ShopUser.objects.filter(phone=phone).exists():
-#                     user = ShopUser.objects.get(phone=phone)
-#                 else:
-#                     character = 'QWERTYUIOPASDFGHJKLZXCVBNM-0123456789-@_qwertyuiopasdfghjklzxcvbnm'
-#                     user_password = ''.join(random.sample(character, 8))
-#
-#                     user = ShopUser.objects.create_user()
-#                     user.set_password(user_password)
-#                     user.save()
-#
-#                 login(request, user)
-#
-#                 del request.session['verification_code']
-#                 del request.session['phone']
-#
-#                 return redirect('shop:products')
-#         else:
-#             messages.error(request, 'Your verification code does not match.')
-#     return render(request, 'form/verify_code.html')
-#
 

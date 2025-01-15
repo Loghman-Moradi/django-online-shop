@@ -7,7 +7,7 @@
 
     <div class="cart-content">
         {% for item in cart %}
-            {# item = product-info(dictionary) #}
+
             {% with product=item.product %}
                 <div class="product-item" data-item-id="{{ product.id }}">
                     <a href="{% url 'shop:product_detail' product.id product.slug %}">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="checkout-button">
-            <div class="continue-btn"><a href="{% url 'shop:products' %}">ادامه خرید</a></div>
+            <div class="continue-btn"><a href="{% url 'orders:order_create' %}">ادامه خرید</a></div>
 
         </div>
     </div>

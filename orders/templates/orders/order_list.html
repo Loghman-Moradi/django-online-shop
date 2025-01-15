@@ -1,0 +1,45 @@
+{% extends 'parent/base.html' %}
+{% load jformat %}
+{% load static %}
+{% block title %}order's list{% endblock %}
+
+{% block content %}
+    <h1>لیست سفارشات</h1>
+
+    {% if orders %}
+        <table>
+            <thead>
+                <tr>
+                    <th>شماره سفارش</th>
+                    <th>تاریخ سفارش</th>
+                    <th>وضعیت پرداخت</th>
+                    <th>وضعیت سفارش</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td><a href="{% url 'orders:order_detail' order.id %}">{{ order.id }}</a></td>
+
+                        <td>{{ order.created_at|jformat:"%Y-%m-%d ==> %H:%m" }}</td>
+
+                        {% if order.paid %}
+                            <td>پرداخت موفق ✔️</td>
+                        {% else %}
+                            <td>پرداخت ناموفق ✖️</td>
+                        {% endif %}
+
+                        <td>{{ order.get_status_display }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        هیچ سفارشی ثبت نشده است!
+    {% endif %}
+{% endblock %}
+
+
+
+

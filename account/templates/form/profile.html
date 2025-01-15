@@ -1,0 +1,14 @@
+{% extends 'parent/base.html' %}
+{% block title %} profile {% endblock %}
+{% block content %}
+    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+    <p>{{ user.phone}}</p>
+    <br>
+    <a href="{% url 'orders:order_list' %}">سفارش های من</a>
+    <br>
+    <a href="{% url 'account:address' %}">آدرس ها</a>
+    <br>
+    <br>
+    <a href="{% url 'account:log_out' %}">خروج</a>
+
+{% endblock %}

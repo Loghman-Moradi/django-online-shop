@@ -1,0 +1,16 @@
+{% extends 'parent/base.html' %}
+{% block title %}address detail{% endblock %}
+{% block content %}
+    <p>address: {{ my_address.address_line }}</p>
+    <p>first_name: {{ my_address.first_name }}</p>
+    <p>last_name: {{ my_address.last_name }}</p>
+    <p>phone_number: {{ my_address.phone_number }}</p>
+    <p>province: {{ my_address.province }}</p>
+    <p>city: {{ my_address.city }}</p>
+    <p>plate: {{ my_address.plate }}</p>
+    <p>unit: {{ my_address.unit }}</p>
+    <p>postal_code: {{ my_address.postal_code }}</p>
+    <a href="{% url 'account:edit_address' my_address.id %}">ویرایش</a>
+    <br>
+    <a href="{% url 'account:delete_address' my_address.id %}">حذف</a>
+{% endblock %}

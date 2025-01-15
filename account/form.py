@@ -1,12 +1,12 @@
 from django import forms
-from .models import ShopUser
+from .models import ShopUser, Address
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
 class ShopUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = ShopUser
-        fields = ('phone', 'first_name', 'last_name', 'address', 'is_active', 'is_staff', 'is_superuser', 'date_joined')
+        fields = ('phone', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'date_joined')
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
@@ -25,12 +25,12 @@ class ShopUserCreationForm(UserCreationForm):
 class ShopUserChangeForm(UserChangeForm):
     class Meta(UserCreationForm.Meta):
         model = ShopUser
-        fields = ('phone', 'first_name', 'last_name', 'address', 'is_active', 'is_staff', 'is_superuser', 'date_joined')
+        fields = ('phone', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'date_joined')
 
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
 
-        if ShopUser.objects.filter(phone=phone).exists():
+        if ShopUser.objects.exclude(id=self.instance.id).filter(phone=phone).exists():
             raise forms.ValidationError("'This phone number is already taken")
         if not phone.isdigit():
             raise forms.ValidationError("Phone number is invalid")
@@ -56,8 +56,17 @@ class PhoneVerificationForm(forms.Form):
         return phone_number
 
 
+class EditInformationForm(forms.ModelForm):
+    class Meta:
+        model = ShopUser
+        fields = ['first_name', 'last_name']
 
 
+class AddressForm(forms.ModelForm):
+    class Meta:
+        model = Address
+        fields = ['first_name', 'last_name', 'phone_number', 'province', 'city', 'plate', 'unit', 'postal_code',
+                  'address_line']
 
 
 

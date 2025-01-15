@@ -32,8 +32,8 @@ class Product(models.Model):
     price = models.PositiveIntegerField(default=0, verbose_name="قیمت")
     offers = models.PositiveIntegerField(default=0, verbose_name="تخفیف")
     new_price = models.PositiveIntegerField(default=0, verbose_name="قیمت پس از تخفیف")
-    created_at = jmodels.jDateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
-    updated_at = jmodels.jDateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی")
 
     class Meta:
         ordering = ['-created_at']
@@ -73,7 +73,7 @@ class Images(models.Model):
     image_file = models.ImageField(upload_to='product_image/%y/%m/%d')
     title = models.CharField(max_length=100, verbose_name="عنوان", blank=True)
     description = models.TextField(verbose_name="توضیحات", blank=True)
-    created_at = jmodels.jDateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-created_at']
