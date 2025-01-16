@@ -13,6 +13,8 @@ urlpatterns = [
     path('add_address/', views.add_address, name="add_address"),
     path('edit_address/<int:pk>/', views.edit_address, name="edit_address"),
     path('delete_address/<int:pk>/', views.delete_address, name="delete_address"),
+    path('wishlist/', views.wishlist, name="wishlist"),
+    path('toggle_wishlist/', views.toggle_wishlist, name="toggle_wishlist"),
 
 ]
 

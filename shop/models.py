@@ -1,13 +1,17 @@
 from django.db import models
 from django.urls import reverse
-from django_jalali.db import models as jmodels
-
-# Create your models here.
+from django.utils.text import slugify
+from account.models import ShopUser
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="نام")
     slug = models.SlugField(unique=True, verbose_name="اسلاگ")
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(str(self.name))
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['name']
@@ -86,9 +90,6 @@ class Images(models.Model):
 
     def __str__(self):
         return f"{self.title}" if self.title else f"{self.image_file}"
-
-
-
 
 
 

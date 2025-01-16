@@ -27,5 +27,35 @@
         <p>price: {{ product.price }}</p>
         <p>offers: {{ product.offers }}</p>
         <p>new price: {{ product.new_price }}</p>
+        <br><br>
     {% endfor %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.wishlist-btn').click(function() {
+                var productId = $(this).data('product-id');
+                var button = $(this);
+
+                $.ajax({
+                    url: "{% url 'account:toggle_wishlist' %}",
+                    type: "POST",
+                    data: {
+                        'product_id': productId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.status === 'added') {
+                            button.text('Remove from favorites');
+                        } else if (response.status === 'removed') {
+                            button.text('Add to favorites');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error sending request: " + error);
+                    }
+                });
+            });
+        });
+    </script>
 {% endblock %}

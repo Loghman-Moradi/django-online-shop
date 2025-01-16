@@ -1,11 +1,13 @@
 import random
 from django.contrib import messages
 from django.contrib.auth import login, logout
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .form import *
 from django.contrib.auth.decorators import login_required
 from shop.utils import verify_code_base, verify_phone_base
+from .models import Wishlist
+from shop.models import Product
 
 
 def verify_phone(request):
@@ -67,6 +69,7 @@ def add_address(request):
     return render(request, 'form/address_form.html', context)
 
 
+@login_required
 def address_detail(request, pk):
     my_address = get_object_or_404(Address, pk=pk, user=request.user)
     context = {
@@ -76,6 +79,7 @@ def address_detail(request, pk):
     return render(request, 'form/address_detail.html', context)
 
 
+@login_required
 def edit_address(request, pk):
     address = get_object_or_404(Address, pk=pk, user=request.user)
     if request.method == "POST":
@@ -92,10 +96,37 @@ def edit_address(request, pk):
     return render(request, 'form/edit_address.html', context)
 
 
+@login_required
 def delete_address(request, pk):
     address = get_object_or_404(Address, pk=pk, user=request.user)
     address.delete()
     return redirect('account:address')
+
+
+@login_required
+def wishlist(request):
+    wishlist_item = Wishlist.objects.filter(user=request.user)
+    products = [item.product for item in wishlist_item]
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'form/wishlist.html', context)
+
+
+def toggle_wishlist(request):
+    product_id = request.POST.get('product_id')
+    product = get_object_or_404(Product, pk=product_id)
+    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
+
+    if not created:
+        wishlist_item.delete()
+        return JsonResponse({'status': 'removed'})
+    else:
+        return JsonResponse({'status': 'added'})
+
+
+
 
 
 

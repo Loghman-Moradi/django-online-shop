@@ -1,8 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .form import SearchForm
 from .models import *
-from django.contrib.auth.decorators import login_required
 from django.contrib.postgres.search import TrigramSimilarity
 
 

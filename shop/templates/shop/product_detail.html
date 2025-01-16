@@ -4,24 +4,27 @@
     {% for img in product.images.all %}
         <img width="150" height="150" src="{{ img.image_file.url }}">
     {% endfor %}
-    <img src="{{ product.images.image_file.url }}">
-    <p>اسم محصول :{{ product.name }}</p>
-    <p>توضیحات :{{ product.description }}</p>
-    <p>موجودی :{{ product.inventory }}</p>
-        <ul>
+    <p>product name: {{ product.name }}</p>
+    <p>description: {{ product.description }}</p>
+    <p>inventory: {{ product.inventory }}</p>
+    <ul>
         {% for feature in product.features.all %}
             <li>{{ feature.name }}: {{ feature.value }}</li>
         {% endfor %}
-        </ul>
-    <span>قیمت :{{ product.price }}</span>
+    </ul>
+    <span>price: {{ product.price }}</span>
     <br>
     {% if product.offers %}
-        <span>قیمت پس از تخفیف :{{ product.new_price }}</span>
+        <span>new price: {{ product.new_price }}</span>
     {% endif %}
     <br>
     <br>
 
-    <button id="add-cart" type="button">افزودن به سبد خرید</button>
+    <button class="wishlist-btn" data-product-id="{{ product.id }}">
+        {% if product in request.user.wishlist_user.all %}Remove to favorites{% else %}Add to favorites{% endif %}
+    </button>
+
+    <button id="add-cart" type="button">Add to cart</button>
 
     <hr>
     {% for product in similar_products %}
@@ -33,22 +36,45 @@
     {% endfor %}
 
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        $(document).ready(function (){
-            $('#add-cart').click(function (){
+        $(document).ready(function() {
+            $('.wishlist-btn').click(function() {
+                var productId = $(this).data('product-id');
+                var button = $(this);
+
+                $.ajax({
+                    url: "{% url 'account:toggle_wishlist' %}",
+                    type: "POST",
+                    data: {
+                        'product_id': productId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.status === 'added') {
+                            button.text('Remove to favorites');
+                        } else if (response.status === 'removed') {
+                            button.text('Add to favorites');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error sending request: " + error);
+                    }
+                });
+            });
+
+            $('#add-cart').click(function() {
                 $.ajax({
                     type: 'POST',
                     url: '{% url 'cart:add_to_cart' product.id %}',
                     data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                    success: function (response){
+                    success: function(response) {
                         $('.item-count').text(response.item_count);
                         $('.total-price').text(response.total_price);
                     },
-                })
-            })
-        })
+                });
+            });
+        });
     </script>
-
 {% endblock %}

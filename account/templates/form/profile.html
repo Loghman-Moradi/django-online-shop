@@ -4,11 +4,12 @@
     <h3>{{ user.first_name }} {{ user.last_name }}</h3>
     <p>{{ user.phone}}</p>
     <br>
-    <a href="{% url 'orders:order_list' %}">سفارش های من</a>
+    <a href="{% url 'orders:order_list' %}">My Orders</a>
     <br>
-    <a href="{% url 'account:address' %}">آدرس ها</a>
+    <a href="{% url 'account:address' %}">My Addresses</a>
     <br>
+    <a href="{% url 'account:wishlist' %}">My favorites </a>
     <br>
-    <a href="{% url 'account:log_out' %}">خروج</a>
+    <a href="{% url 'account:log_out' %}">Logout</a>
 
 {% endblock %}

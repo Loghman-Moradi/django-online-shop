@@ -3,8 +3,6 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
-# Create your models here.
-
 
 class ShopUserManager(BaseUserManager):
     def create_user(self, phone, password=None, **extra_fields):
@@ -69,6 +67,13 @@ class ShopUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.phone
 
+
+class Wishlist(models.Model):
+    user = models.ForeignKey('account.ShopUser', on_delete=models.CASCADE, related_name='wishlist_user')
+    product = models.ForeignKey('shop.Product', on_delete=models.CASCADE, related_name='product_wishlist')
+
+    def __str__(self):
+        return f"{self.id}"
 
 
 

@@ -21,7 +21,7 @@ def verify_phone_base(request, phone_form, template_name, redirect_url):
             request.session['phone'] = phone
             request.session['code_generated_time'] = timezone.now().isoformat()
 
-            # send_sms_with_template(phone, tokens, 'user_login')
+            send_sms_with_template(phone, tokens, 'template-name')
             messages.success(request, 'Your phone has been verified.')
             return redirect(redirect_url)
     else:
