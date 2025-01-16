@@ -21,7 +21,7 @@ class PhoneVerificationPhone(forms.Form):
 class ReturnedForm(forms.ModelForm):
     class Meta:
         model = ReturnedProducts
-        fields = ['order_item', 'return_reason', 'image']
+        fields = ['return_reason', 'image']
 
     def __init__(self, *args, **kwargs):
         order_item = kwargs.pop('order_item', None)

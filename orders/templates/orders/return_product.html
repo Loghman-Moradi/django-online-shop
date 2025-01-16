@@ -1,9 +1,16 @@
 {% extends 'parent/base.html' %}
 {% block title %} form {% endblock %}
 {% block content %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% if can_return %}
     <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">send</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">send</button>
     </form>
+{% else %}
+    <h3>It is currently not possible to request a return</h3>
+{% endif %}
 {% endblock %}

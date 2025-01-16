@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django_jalali.db import models as jmodels
 from shop.models import Product
 from account.models import ShopUser, Address
@@ -18,6 +19,14 @@ class Order(models.Model):
     created_at = jmodels.jDateTimeField(auto_now_add=True)
     updated_at = jmodels.jDateTimeField(auto_now=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='PENDING')
+    delivery_date = models.DateTimeField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.pk is not None:
+            old_instance = Order.objects.get(pk=self.pk)
+            if old_instance.status != self.status and self.status == "DELIVERED":
+                self.delivery_date = timezone.now()
+        super(Order, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created_at']
@@ -101,7 +110,6 @@ class ReturnedProducts(models.Model):
     user = models.ForeignKey(ShopUser, on_delete=models.SET_NULL, null=True, blank=True)
     return_reason = models.TextField(default="Please explain your reason...")
     image = models.ImageField(upload_to='returned_products')
-    delivery_date = models.DateTimeField(blank=True, null=True)
     request_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=50, choices=Choice_status, default='UNDER REVIEW')
 

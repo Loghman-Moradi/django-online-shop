@@ -1,4 +1,6 @@
 import os
+from django.utils import timezone
+from datetime import timedelta
 from bidi.algorithm import get_display
 from arabic_reshaper import reshape
 from django.contrib import messages
@@ -250,26 +252,37 @@ def order_invoice(request, order_id):
     return response
 
 
+@login_required
 def return_product(request, item_id):
     order_item = get_object_or_404(OrderItem, id=item_id)
+    can_return = False
+
+    if order_item.order.status == "DELIVERED":
+        if order_item.order.delivery_date:
+            time_difference = timezone.now() - order_item.order.delivery_date
+            if time_difference <= timedelta(days=7):
+                can_return = True
 
     if request.method == 'POST':
         form = ReturnedForm(request.POST, request.FILES)
         if form.is_valid():
             returned_product = form.save(commit=False)
             returned_product.order_item = order_item
-            returned_product.user = request.user  # فرض بر این است که کاربر لاگین کرده است
+            returned_product.user = request.user
             returned_product.save()
-            # می‌توانید کارهایی مثل ریدایرکت یا نمایش پیام موفقیت انجام دهید
+            messages.success(request, 'Your request has been successfully registered.')
+        else:
+            messages.error(request, 'Something went wrong. Please try again.')
+
     else:
-        form = ReturnedForm(order_item=order_item)
+        form = ReturnedForm()
+    context = {
+        'order_item': order_item,
+        'form': form,
+        'can_return': can_return,
+    }
 
-    return render(request, 'orders/return_product.html', {'form': form, 'order_item': order_item})
-
-
-
-
-
+    return render(request, 'orders/return_product.html', context)
 
 
 
