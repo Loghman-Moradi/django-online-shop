@@ -93,7 +93,7 @@ class OrderItemInline(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('buyer', 'get_first_name', 'get_last_name', 'get_phone_number', 'get_address', 'get_total_cost',
+    list_display = ('buyer', 'id', 'get_first_name', 'get_last_name', 'get_phone_number', 'get_address', 'get_total_cost',
                     'paid', 'status', 'created_at', 'delivery_date')
     list_editable = ['status']
     actions = [export_to_excel, export_to_csv]
