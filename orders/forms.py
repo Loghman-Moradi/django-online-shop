@@ -1,6 +1,5 @@
 from django import forms
 from .models import Order, ReturnedProducts
-from account.models import Address
 
 
 class PhoneVerificationPhone(forms.Form):

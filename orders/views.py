@@ -1,18 +1,10 @@
-import os
-from django.utils import timezone
 from datetime import timedelta
-from bidi.algorithm import get_display
-from arabic_reshaper import reshape
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404, Http404
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
-
 from account.form import AddressForm
 from .forms import *
-from account.common.kave_sms import send_sms_with_template
 from cart.cart import Cart
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -30,7 +22,6 @@ def verify_phone(request):
 
 def verify_code(request):
     return verify_code_base(request, 'orders:order_create')
-
 
 
 @login_required
@@ -110,88 +101,79 @@ def order_create(request):
     return render(request, 'orders/order_create.html', context)
 
 
-#? sandbox merchant
 if settings.SANDBOX:
     sandbox = 'sandbox'
+    api = 'sandbox'
 else:
     sandbox = 'www'
+    api = 'api'
 
+MERCHANT = settings.MERCHANT
+ZP_API_REQUEST = f"https://{api}.zarinpal.com/pg/v4/payment/request.json"
+ZP_API_VERIFY = f"https://{api}.zarinpal.com/pg/v4/payment/verify.json"
+ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
 
-ZP_API_REQUEST = "https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentRequest.json"
-ZP_API_VERIFY = "https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentVerification.json"
-ZP_API_STARTPAY = "https://sandbox.zarinpal.com/pg/StartPay/"
-
-
-amount = 1000
-description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"
-phone = 'YOUR_PHONE_NUMBER'
-CallbackURL = 'http://127.0.0.1:8000/order/verify/'
+description = 'test',
+email = 'email@example.com'
+mobile = '09123456789'
+CallbackURL = 'http://localhost:8080/payment/verify/'
 
 
 def send_request(request):
-    order = Order.objects.get(id=request.session['order_id'])
-    description = ""
-    for item in order.items.all():
-        description += item.product.name + ", "
-    data = {
-        "MerchantID": settings.MERCHANT,
-        "Amount": order.get_final_cost(),
-        "Description": description,
-        "Phone": request.user.phone,
-        "CallbackURL": CallbackURL,
-
-
+    cart = Cart(request)
+    req_data = {
+        "merchant_id": MERCHANT,
+        "amount": cart.get_post_price(),
+        "callback_url": CallbackURL,
+        "description": description,
+        "metadata": {"mobile": mobile, "email": email}
     }
-    data = json.dumps(data)
-    headers = {'accept': 'application/json', 'content-type': 'application/json', 'content-length': str(len(data))}
-    try:
-        response = requests.post(ZP_API_REQUEST, data=data, headers=headers, timeout=10)
-
-        if response.status_code == 200:
-            response_json = response.json()
-            authority = response_json.get('Authority')
-            if response_json.get('Status') == 100:
-                return redirect(ZP_API_STARTPAY + authority)
-            else:
-                return HttpResponse(f"Error: {response_json.get('Status')}")
-        return HttpResponse(f"response failed: {response.status_code}")
-    except requests.exceptions.Timeout:
-        return HttpResponse('Timeout Error')
-    except requests.exceptions.ConnectionError:
-        return HttpResponse('Connection Error')
+    req_header = {"accept": "application/json",
+                  "content-type": "application/json'"}
+    req = requests.post(url=ZP_API_REQUEST, data=json.dumps(
+        req_data), headers=req_header)
+    authority = req.json()['data']['authority']
+    if len(req.json()['errors']) == 0:
+        return redirect(ZP_API_STARTPAY + authority)
+    else:
+        e_code = req.json()['errors']['code']
+        e_message = req.json()['errors']['message']
+        return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
 
 
 def verify(request):
-    order = Order.objects.get(id=request.session['order_id'])
-    data = {
-        "MerchantID": settings.MERCHANT,
-        "Amount": order.get_final_cost(),
-        "Authority": request.GET.get('Authority'),
-    }
-    data = json.dumps(data)
-    headers = {'accept': 'application/json', 'content-type': 'application/json', 'content-length': str(len(data))}
-    try:
-        response = requests.post(ZP_API_VERIFY, data=data, headers=headers)
-        if response.status_code == 200:
-            response_json = response.json()
-            reference_id = response_json['RefID']
-            if response_json['Status'] == 100:
-                for item in order.items.all():
-                    item.product.inventory -= item.quantity
-                    item.product.save()
-                order.paid = True
-                order.save()
-                return render(request, 'orders/payment-tracking.html',
-                              {'success': True, 'RefID': reference_id, 'order_id': order.id})
+    cart = Cart(request)
+    t_status = request.GET.get('Status')
+    t_authority = request.GET['Authority']
+    if request.GET.get('Status') == 'OK':
+        req_header = {"accept": "application/json",
+                      "content-type": "application/json'"}
+        req_data = {
+            "merchant_id": MERCHANT,
+            "amount": cart.get_final_price(),
+            "authority": t_authority
+        }
+        req = requests.post(url=ZP_API_VERIFY, data=json.dumps(req_data), headers=req_header)
+        if len(req.json()['errors']) == 0:
+            t_status = req.json()['data']['code']
+            if t_status == 100:
+                return HttpResponse('Transaction success.\nRefID: ' + str(
+                    req.json()['data']['ref_id']
+                ))
+            elif t_status == 101:
+                return HttpResponse('Transaction submitted : ' + str(
+                    req.json()['data']['message']
+                ))
             else:
-                return render(request, 'orders/payment-tracking.html',
-                              {'success': False, })
-        del request.session['order_id']
-        return HttpResponse('response failed')
-    except requests.exceptions.Timeout:
-        return HttpResponse('Timeout Error')
-    except requests.exceptions.ConnectionError:
-        return HttpResponse('Connection Error')
+                return HttpResponse('Transaction failed.\nStatus: ' + str(
+                    req.json()['data']['message']
+                ))
+        else:
+            e_code = req.json()['errors']['code']
+            e_message = req.json()['errors']['message']
+            return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
+    else:
+        return HttpResponse('Transaction failed or canceled by user')
 
 
 def order_list(request, status=None):
@@ -246,7 +228,7 @@ def order_invoice(request, order_id):
     p.drawString(100, y_pos - 20, f"total amount: {order.get_total_cost()}")
     p.drawString(100, y_pos - 40, f"----------------------------------")
     p.drawString(100, y_pos - 60, "market: liashopstar")
-    p.drawString(100, y_pos - 80, "phone shop: 09214249950")
+    p.drawString(100, y_pos - 80, "phone shop: ************")
 
     p.save()
     return response

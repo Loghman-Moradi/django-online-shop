@@ -85,7 +85,6 @@ def export_to_csv(modladmin, request, queryset):
 export_to_csv.short_description = 'Export to CSV'
 
 
-
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_fields = ['product']

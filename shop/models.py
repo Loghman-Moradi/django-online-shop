@@ -5,8 +5,8 @@ from account.models import ShopUser
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name="نام")
-    slug = models.SlugField(unique=True, verbose_name="اسلاگ")
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -19,8 +19,8 @@ class Category(models.Model):
             models.Index(fields=['name']),
         ]
 
-        verbose_name = "دسته بندی"
-        verbose_name_plural = "دسته بندی ها"
+        verbose_name = "category"
+        verbose_name_plural = "categories"
 
     def __str__(self):
         return f"{self.name}"
@@ -28,16 +28,16 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-    name = models.CharField(max_length=100, verbose_name="نام")
-    slug = models.SlugField(unique=True, verbose_name="اسلاگ")
-    description = models.TextField(verbose_name="توضیحات")
-    inventory = models.PositiveIntegerField(default=0, verbose_name="موجودی")
-    weight = models.PositiveIntegerField(default=0, verbose_name="وزن")
-    price = models.PositiveIntegerField(default=0, verbose_name="قیمت")
-    offers = models.PositiveIntegerField(default=0, verbose_name="تخفیف")
-    new_price = models.PositiveIntegerField(default=0, verbose_name="قیمت پس از تخفیف")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="تاریخ ایجاد")
-    updated_at = models.DateTimeField(auto_now=True, verbose_name="تاریخ بروزرسانی")
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(unique=True)
+    description = models.TextField()
+    inventory = models.PositiveIntegerField(default=0)
+    weight = models.PositiveIntegerField(default=0)
+    price = models.PositiveIntegerField(default=0)
+    offers = models.PositiveIntegerField(default=0)
+    new_price = models.PositiveIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created_at']
@@ -47,8 +47,8 @@ class Product(models.Model):
             models.Index(fields=['-created_at']),
         ]
 
-        verbose_name = "محصول"
-        verbose_name_plural = "محصولات"
+        verbose_name = "product"
+        verbose_name_plural = "products"
 
     def get_absolute_url(self):
         return reverse('shop:product_detail', kwargs={'id': self.id, 'slug': self.slug})
@@ -58,15 +58,15 @@ class Product(models.Model):
 
 
 class ProductFeatures(models.Model):
-    name = models.CharField(max_length=100, verbose_name="نام")
-    value = models.CharField(max_length=255, verbose_name="ویژگی")
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=255)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='features')
 
     class Meta:
         ordering = ['name']
 
-        verbose_name = "ویژگی"
-        verbose_name_plural = "ویژگی ها"
+        verbose_name = "feature"
+        verbose_name_plural = "features"
 
     def __str__(self):
         return f"{self.name}:{self.value}"
@@ -74,9 +74,9 @@ class ProductFeatures(models.Model):
 
 class Images(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image_file = models.ImageField(upload_to='product_image/%y/%m/%d')
-    title = models.CharField(max_length=100, verbose_name="عنوان", blank=True)
-    description = models.TextField(verbose_name="توضیحات", blank=True)
+    image_file = models.ImageField(upload_to='product_image/')
+    title = models.CharField(max_length=100, blank=True)
+    description = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -85,8 +85,8 @@ class Images(models.Model):
             models.Index(fields=['-created_at']),
         ]
 
-        verbose_name = "تصاویر"
-        verbose_name_plural = "تصاویر ها"
+        verbose_name = "image"
+        verbose_name_plural = "images"
 
     def __str__(self):
         return f"{self.title}" if self.title else f"{self.image_file}"
