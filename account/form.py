@@ -12,7 +12,7 @@ class ShopUserCreationForm(UserCreationForm):
         phone = self.cleaned_data.get('phone')
 
         if ShopUser.objects.filter(phone=phone).exists():
-            raise forms.ValidationError("'This phone number is already taken")
+            raise forms.ValidationError("This phone number is already taken")
         if not phone.isdigit():
             raise forms.ValidationError("Phone number is invalid")
         if len(phone) != 11:
@@ -31,18 +31,20 @@ class ShopUserChangeForm(UserChangeForm):
         phone = self.cleaned_data.get('phone')
 
         if ShopUser.objects.exclude(id=self.instance.id).filter(phone=phone).exists():
-            raise forms.ValidationError("'This phone number is already taken")
+            raise forms.ValidationError("This phone number is already taken")
         if not phone.isdigit():
             raise forms.ValidationError("Phone number is invalid")
         if len(phone) != 11:
             raise forms.ValidationError("Phone number must have 11 digits")
         if not phone.startswith('09'):
-            raise forms.ValidationError("Phone number must start with '09'")
+            raise forms.ValidationError('Phone number must start with "09"')
         return phone
 
 
 class PhoneVerificationForm(forms.Form):
-    phone_number = forms.CharField(max_length=11)
+    phone_number = forms.CharField(max_length=11, error_messages={
+            'max_length': 'Phone number must have 11 digits',
+        })
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data.get('phone_number')
