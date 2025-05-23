@@ -24,7 +24,7 @@ def verify_code(request):
     return verify_code_base(request, 'orders:order_create')
 
 
-@login_required
+@login_required(login_url='orders:verify_phone')
 def order_create(request):
     addresses = Address.objects.filter(user=request.user)
     has_address = addresses.exists()
@@ -58,17 +58,17 @@ def order_create(request):
             if form.is_valid():
                 cd = form.cleaned_data
                 address = Address.objects.create(
-                  user=request.user,
-                  first_name=cd['first_name'],
-                  last_name=cd['last_name'],
-                  phone_number=cd['phone_number'],
-                  province=cd['province'],
-                  city=cd['city'],
-                  postal_code=cd['postal_code'],
-                  unit=cd['unit'],
-                  plate=cd['plate'],
-                  address_line=cd['address_line'],
-              )
+                    user=request.user,
+                    first_name=cd['first_name'],
+                    last_name=cd['last_name'],
+                    phone_number=cd['phone_number'],
+                    province=cd['province'],
+                    city=cd['city'],
+                    postal_code=cd['postal_code'],
+                    unit=cd['unit'],
+                    plate=cd['plate'],
+                    address_line=cd['address_line'],
+                )
                 order = Order.objects.create(
                     buyer=request.user,
                 )
@@ -129,9 +129,10 @@ def send_request(request):
         "metadata": {"mobile": mobile, "email": email}
     }
     req_header = {"accept": "application/json",
-                  "content-type": "application/json'"}
+                  "content-type": "application/json"}
     req = requests.post(url=ZP_API_REQUEST, data=json.dumps(
         req_data), headers=req_header)
+    print("ZarinPal Response:", req.json())
     authority = req.json()['data']['authority']
     if len(req.json()['errors']) == 0:
         return redirect(ZP_API_STARTPAY + authority)
@@ -147,7 +148,7 @@ def verify(request):
     t_authority = request.GET['Authority']
     if request.GET.get('Status') == 'OK':
         req_header = {"accept": "application/json",
-                      "content-type": "application/json'"}
+                      "content-type": "application/json"}
         req_data = {
             "merchant_id": MERCHANT,
             "amount": cart.get_final_price(),
@@ -265,11 +266,3 @@ def return_product(request, item_id):
     }
 
     return render(request, 'orders/return_product.html', context)
-
-
-
-
-
-
-
-

@@ -1,0 +1,56 @@
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_NAME=liashopstar
+      - DATABASE_USER=loghman
+      - DATABASE_PASSWORD=123456789
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+    networks:
+      - shop_network
+
+  db:
+    image: postgres:13
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=liashopstar
+      - POSTGRES_USER=loghman
+      - POSTGRES_PASSWORD=123456789
+    command: ["postgres", "-c", "shared_preload_libraries=pg_trgm"]
+    networks:
+      - shop_network
+
+volumes:
+  pg_data:
+
+networks:
+  shop_network:
+    driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

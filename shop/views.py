@@ -50,9 +50,10 @@ def search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            result = Product.objects.annotate(similarity=TrigramSimilarity('name', query) +
-                                              TrigramSimilarity('description', query))\
-            .filter(similarity__gt=0.2).order_by('-similarity')
+            result = Product.objects.annotate(
+                similarity=TrigramSimilarity('name', query) +
+                           TrigramSimilarity('description', query))\
+                .filter(similarity__gt=0.2).order_by('-similarity')
 
     context = {
         'query': query,
@@ -60,13 +61,6 @@ def search(request):
     }
 
     return render(request, 'shop/search.html', context)
-
-
-
-
-
-
-
 
 
 

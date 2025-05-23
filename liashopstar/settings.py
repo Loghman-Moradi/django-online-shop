@@ -90,10 +90,11 @@ WSGI_APPLICATION = 'liashopstar.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'liashopstar',
-        'USER': 'loghman',
-        'PASSWORD': '123456789',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE_NAME', 'liashopstar'),
+        'USER': os.environ.get('DATABASE_USER', 'loghman'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', '123456789'),
+        'HOST': os.environ.get('DATABASE_HOST', 'db'),
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),
     }
 }
 
@@ -133,8 +134,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_URLS = ['static/']
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -147,18 +149,18 @@ MERCHANT = "00000000-0000-0000-0000-000000000000"
 SANDBOX = True
 
 
-# ARVAN CLOUD STORAGE
-
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = '50e6f8ad-21f6-4a3d-897d-037e36ef29e8'
-AWS_SECRET_ACCESS_KEY = 'bdca5d3519fa05138cf169187512d724c2fcd0eaa6ac21c43e51f5f45eb54832'
-AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
-AWS_STORAGE_BUCKET_NAME = 'lia-shop-star'
-AWS_SERVICE_NAME = 's3'
-AWS_S3_FILE_OVERWRITE = False
-
-
+# # ARVAN CLOUD STORAGE
+#
+# # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3.S3Boto3Storage'
+# AWS_ACCESS_KEY_ID = '50e6f8ad-21f6-4a3d-897d-037e36ef29e8'
+# AWS_SECRET_ACCESS_KEY = 'bdca5d3519fa05138cf169187512d724c2fcd0eaa6ac21c43e51f5f45eb54832'
+# AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
+# AWS_STORAGE_BUCKET_NAME = 'lia-shop-star'
+# AWS_SERVICE_NAME = 's3'
+# AWS_S3_FILE_OVERWRITE = False
+#
+#
 
 
 

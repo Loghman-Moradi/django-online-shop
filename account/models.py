@@ -53,8 +53,7 @@ class Address(models.Model):
 
 
 class ShopUser(AbstractBaseUser, PermissionsMixin):
-    phone = models.CharField(max_length=11, unique=True, validators=[
-        MaxLengthValidator(11, message="Phone number must have 11 digits")])
+    phone = models.CharField(max_length=11, unique=True)
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     is_active = models.BooleanField(default=True)
