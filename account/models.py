@@ -2,7 +2,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-from django.core.validators import MaxLengthValidator
+from .validators import phone_number_validator
 
 
 class ShopUserManager(BaseUserManager):
@@ -10,10 +10,12 @@ class ShopUserManager(BaseUserManager):
         if not phone:
             raise ValueError('Users must have a phone')
         user = self.model(phone=phone, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-
-        return user
+        if password:
+            user.set_password(password)
+        else:
+            user.set_unusable_password()
+            user.save(using=self._db)
+            return user
 
     def create_superuser(self, phone, password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
@@ -31,7 +33,7 @@ class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='addresses', blank=True, null=True)
     first_name = models.CharField(max_length=20, blank=False, null=False)
     last_name = models.CharField(max_length=20, blank=False, null=False)
-    phone_number = models.CharField(max_length=11, blank=False, null=False)
+    phone_number = models.CharField(max_length=11,  unique=True, validators=[phone_number_validator], blank=False, null=False)
     province = models.CharField(max_length=20, blank=False, null=False)
     city = models.CharField(max_length=20, blank=False, null=False)
     plate = models.CharField(max_length=10, blank=False, null=False)
@@ -74,7 +76,7 @@ class Wishlist(models.Model):
     product = models.ForeignKey('shop.Product', on_delete=models.CASCADE, related_name='product_wishlist')
 
     def __str__(self):
-        return f"{self.id}"
+        return f"Wishlist for {self.user.phone} - Product"
 
 
 

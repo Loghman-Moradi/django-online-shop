@@ -1,5 +1,5 @@
 from django.test import TestCase
-from account.form import PhoneVerificationForm, ShopUserCreationForm
+from account.forms import PhoneVerificationForm, ShopUserCreationForm
 from account.models import ShopUser
 
 

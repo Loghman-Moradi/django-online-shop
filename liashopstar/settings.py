@@ -163,18 +163,30 @@ SANDBOX = True
 #
 
 
+SHIPPING_COSTS = {
+    'TIER1_MAX_WEIGHT': 999,
+    'TIER1_COST': 20000,
+    'TIER2_MAX_WEIGHT': 1999,
+    'TIER2_COST': 30000,
+    'TIER3_COST': 50000,
+}
 
 
 
 
 
+# settings.py
 
+# ... بقیه تنظیمات شما ...
 
+# تنظیمات آقای پرداخت
+AQAYEPARDAKHT_PIN = 'sandbox'
+AQAYEPARDAKHT_CREATE_URL = 'https://panel.aqayepardakht.ir/api/v2/create'
+AQAYEPARDAKHT_VERIFY_URL = 'https://panel.aqayepardakht.ir/api/v2/verify'
+AQAYEPARDAKHT_STARTPAY_URL = 'https://panel.aqayepardakht.ir/startpay/sandbox/'
 
-
-
-
-
-
+# این آدرس رو مستقیماً وارد کنید، به جای استفاده از reverse_lazy
+BASE_URL = 'http://127.0.0.1:8000'
+AQAYEPARDAKHT_CALLBACK_URL = f'{BASE_URL}/orders/confirm-payment/'
 
 

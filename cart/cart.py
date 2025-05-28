@@ -1,4 +1,5 @@
 from shop.models import Product
+from django.conf import settings
 
 
 class Cart:
@@ -8,6 +9,7 @@ class Cart:
         if not cart:
             cart = self.session['cart'] = {}
         self.cart = cart
+        self.cart.update()
 
     def add(self, product):
         product_id = str(product.id)
@@ -20,9 +22,10 @@ class Cart:
 
     def decrease(self, product):
         product_id = str(product.id)
-        if self.cart[product_id]['quantity'] > 1:
-            self.cart[product_id]['quantity'] -= 1
-        self.save()
+        if product_id in self.cart:
+            if self.cart[product_id]['quantity'] > 1:
+                self.cart[product_id]['quantity'] -= 1
+            self.save()
 
     def remove(self, product):
         product_id = str(product.id)
@@ -42,15 +45,14 @@ class Cart:
             if product_id in self.cart:
                 self.cart[product_id]['price'] = product.new_price
 
-
     def get_post_price(self):
         weight = sum(item['weight'] * item['quantity'] for item in self.cart.values())
-        if weight < 1000:
-            return 20000
-        elif 1000 <= weight < 2000:
-            return 30000
+        if weight < settings.SHIPPING_COSTS['TIER1_MAX_WEIGHT'] + 1:
+            return settings.SHIPPING_COSTS['TIER1_COST']
+        elif weight < settings.SHIPPING_COSTS['TIER2_MAX_WEIGHT'] + 1:
+            return settings.SHIPPING_COSTS['TIER2_COST']
         else:
-            return 50000
+            return settings.SHIPPING_COSTS['TIER3_COST']
 
     def get_total_price(self):
         self.update_price()

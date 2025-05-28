@@ -3,6 +3,7 @@ from .cart import Cart
 from shop.models import Product
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
+from django.http import Http404
 
 
 @require_POST
@@ -18,8 +19,8 @@ def add_to_cart(request, product_id):
         }
 
         return JsonResponse(context)
-    except:
-        return JsonResponse({'error': 'Something went wrong'})
+    except Http404:
+        return JsonResponse({'error': 'Something went wrong'}, status=404)
 
 
 def cart_detail(request):
@@ -54,8 +55,8 @@ def update_quantity(request):
         }
 
         return JsonResponse(context)
-    except:
-        return JsonResponse({'success': False, 'error': 'Something went wrong: product not found!'})
+    except Http404:
+        return JsonResponse({'success': False, 'error': 'Something went wrong: product not found!'}, status=404)
 
 
 def delete_product(request):
@@ -74,8 +75,8 @@ def delete_product(request):
         }
 
         return JsonResponse(context)
-    except:
-        return JsonResponse({'success': False, 'error': 'Something went wrong: product not found!'})
+    except Http404:
+        return JsonResponse({'success': False, 'error': 'Something went wrong: product not found!'}, status=404)
 
 
 

@@ -1,16 +1,17 @@
 from django.contrib import messages
-from django.contrib.auth import login, logout
+from django.contrib.auth import logout
 from django.http import Http404, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from .form import *
+from .forms import PhoneVerificationForm, AddressForm
 from django.contrib.auth.decorators import login_required
 from shop.utils import verify_code_base, verify_phone_base
-from .models import Wishlist
+from .models import Wishlist, Address
 from shop.models import Product
 
 
 def verify_phone(request):
-    return verify_phone_base(request, PhoneVerificationForm, 'form/verify_phone.html', 'account:verify_code')
+    return verify_phone_base(
+        request, PhoneVerificationForm, 'form/verify_phone.html', 'account:verify_code')
 
 
 def verify_code(request):
@@ -44,7 +45,7 @@ def add_address(request):
         form = AddressForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            address = Address.objects.create(
+            Address.objects.create(
                 user=request.user,
                 first_name=cd['first_name'],
                 last_name=cd['last_name'],
@@ -58,7 +59,6 @@ def add_address(request):
 
             )
 
-            address.save()
             messages.success(request, 'Your address has been added.')
     else:
         form = AddressForm()
@@ -116,10 +116,10 @@ def wishlist(request):
 def toggle_wishlist(request):
     product_id = request.POST.get('product_id')
     product = get_object_or_404(Product, pk=product_id)
-    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, product=product)
+    user_wishlist, created = Wishlist.objects.get_or_create(user=request.user, product=product)
 
     if not created:
-        wishlist_item.delete()
+        user_wishlist.delete()
         return JsonResponse({'status': 'removed'})
     else:
         return JsonResponse({'status': 'added'})

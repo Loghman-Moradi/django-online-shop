@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .form import SearchForm
+from .forms import SearchForm
 from .models import *
 from django.contrib.postgres.search import TrigramSimilarity
 
@@ -13,15 +13,16 @@ def product_list(request, category_slug=None, sort_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
 
-    if sort_slug:
-        if sort_slug == "newest":
-            products = products.order_by('-created_at')
-        elif sort_slug == "price_asc":
-            products = products.order_by('price')
-        elif sort_slug == "price_desc":
-            products = products.order_by('-price')
-        elif sort_slug == "biggest_discount":
-            products = products.order_by('-offers')
+    sort_option = {
+        "newest": "-created_at",
+        "price_asc": "price",
+        "price_desc": "-price",
+        "biggest_discount": "-offers",
+
+    }
+
+    if sort_slug and sort_slug in sort_option:
+        products = products.order_by(sort_option[sort_slug])
 
     context = {
         'products': products,

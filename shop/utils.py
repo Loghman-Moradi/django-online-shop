@@ -1,4 +1,3 @@
-from datetime import datetime
 from datetime import timedelta
 import random
 from django.contrib import messages
@@ -16,12 +15,11 @@ def verify_phone_base(request, phone_form, template_name, redirect_url):
             phone = form.cleaned_data['phone_number']
             code = ''.join(random.sample("0123456789", 6))
             tokens = {'token': code}
-            print(tokens)
             request.session['verification_code'] = code
             request.session['phone'] = phone
             request.session['code_generated_time'] = timezone.now().isoformat()
 
-            send_sms_with_template(phone, tokens, 'template-name')
+            send_sms_with_template(phone, tokens, 'user-login')  # template-name
             messages.success(request, 'Your phone has been verified.')
             return redirect(redirect_url)
     else:
@@ -40,30 +38,29 @@ def verify_code_base(request, redirect_url):
             verification_code = request.session.get('verification_code')
             phone = request.session.get('phone')
             code_generated_time_str = request.session.get('code_generated_time')
-            if code_generated_time_str:
-                code_generated_time = timezone.datetime.fromisoformat(code_generated_time_str)
 
-                if timezone.now() > code_generated_time + timedelta(minutes=2):
-                    messages.error(request, 'Your verification code has expired.')
-                    return render(request, 'form/verify_code.html')
+            if not verification_code or not phone or not code_generated_time_str:
+                messages.error(request, 'Please verify your phone number first.')
+                return redirect(redirect_url)
 
-                if received_code == verification_code:
-                    if ShopUser.objects.filter(phone=phone).exists():
-                        user = ShopUser.objects.get(phone=phone)
-                    else:
-                        character = 'QWERTYUIOPASDFGHJKLZXCVBNM-0123456789-@_qwertyuiopasdfghjklzxcvbnm'
-                        user_password = ''.join(random.sample(character, 8))
+            code_generated_time = timezone.datetime.fromisoformat(code_generated_time_str)
 
-                        user = ShopUser.objects.create_user(phone=phone)
-                        user.set_password(user_password)
-                        user.save()
-                    login(request, user)
-                    del request.session['verification_code']
-                    del request.session['phone']
-                    del request.session['code_generated_time']
-                    return redirect(redirect_url)
-                else:
-                    messages.error(request, 'Your verification code does not match.')
+            if timezone.now() > code_generated_time + timedelta(minutes=2):
+                messages.error(request, 'Your verification code has expired.')
+                return render(request, 'form/verify_code.html')
+
+            if received_code == verification_code:
+                user, created = ShopUser.objects.get_or_create(phone=phone)
+                if created:
+                    user.set_unusable_password()
+                    user.save()
+                login(request, user)
+                del request.session['verification_code']
+                del request.session['phone']
+                del request.session['code_generated_time']
+                return redirect(redirect_url)
+            else:
+                messages.error(request, 'Your verification code does not match.')
     return render(request, 'form/verify_code.html')
 
 

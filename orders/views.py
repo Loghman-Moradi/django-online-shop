@@ -1,12 +1,14 @@
-from datetime import timedelta
+from datetime import timedelta, timezone
+from django.db import transaction
 from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404, Http404
+from django.shortcuts import render, get_object_or_404, Http404
+from django.views.decorators.csrf import csrf_exempt
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
-from account.form import AddressForm
-from .forms import *
+from account.forms import AddressForm
+from .forms import PhoneVerificationPhone, ReturnedForm
 from cart.cart import Cart
-from .models import *
+from .models import Address, Order, OrderAddress, OrderItem
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.shortcuts import redirect
@@ -29,53 +31,20 @@ def order_create(request):
     addresses = Address.objects.filter(user=request.user)
     has_address = addresses.exists()
     cart = Cart(request)
+
     if request.method == 'POST':
-        if 'selected_address' in request.POST:
-            selected_address_id = request.POST.get('selected_address')
-            selected_address = Address.objects.get(id=selected_address_id)
-            order = Order.objects.create(
-                buyer=request.user,
-            )
+        with transaction.atomic():
+            if 'selected_address' in request.POST:
+                selected_address_id = request.POST.get('selected_address')
+                selected_address = Address.objects.get(id=selected_address_id)
 
-            OrderAddress.objects.create(
-                order=order,
-                address=selected_address,
-            )
-
-            for item in cart:
-                OrderItem.objects.create(
-                    order=order,
-                    product=item['product'],
-                    price=item['price'],
-                    quantity=item['quantity'],
-                    weight=item['weight'],
-                )
-            cart.clear()
-            request.session['order_id'] = order.id
-            return redirect('orders:request')
-        else:
-            form = AddressForm(request.POST)
-            if form.is_valid():
-                cd = form.cleaned_data
-                address = Address.objects.create(
-                    user=request.user,
-                    first_name=cd['first_name'],
-                    last_name=cd['last_name'],
-                    phone_number=cd['phone_number'],
-                    province=cd['province'],
-                    city=cd['city'],
-                    postal_code=cd['postal_code'],
-                    unit=cd['unit'],
-                    plate=cd['plate'],
-                    address_line=cd['address_line'],
-                )
                 order = Order.objects.create(
                     buyer=request.user,
                 )
 
                 OrderAddress.objects.create(
                     order=order,
-                    address=address
+                    address=selected_address,
                 )
 
                 for item in cart:
@@ -89,9 +58,58 @@ def order_create(request):
 
                 cart.clear()
                 request.session['order_id'] = order.id
-                return redirect('orders:request')
+                return redirect('orders:request_payment', order_id=order.id)
+
+            else:
+                form = AddressForm(request.POST)
+                if form.is_valid():
+                    cd = form.cleaned_data
+                    address = Address.objects.create(
+                        user=request.user,
+                        first_name=cd['first_name'],
+                        last_name=cd['last_name'],
+                        phone_number=cd['phone_number'],
+                        province=cd['province'],
+                        city=cd['city'],
+                        postal_code=cd['postal_code'],
+                        unit=cd['unit'],
+                        plate=cd['plate'],
+                        address_line=cd['address_line'],
+                    )
+
+                    order = Order.objects.create(
+                        buyer=request.user,
+                    )
+
+                    OrderAddress.objects.create(
+                        order=order,
+                        address=address
+                    )
+
+                    for item in cart:
+                        OrderItem.objects.create(
+                            order=order,
+                            product=item['product'],
+                            price=item['price'],
+                            quantity=item['quantity'],
+                            weight=item['weight'],
+                        )
+
+                    cart.clear()
+                    request.session['order_id'] = order.id
+                    return redirect('orders:request_payment', order_id=order.id)
+                else:
+                    messages.error(request, 'لطفاً اطلاعات آدرس جدید را به درستی وارد کنید.')
+                    context = {
+                        'form': form,
+                        'addresses': addresses,
+                        'has_address': has_address,
+                        'cart': cart,
+                    }
+                    return render(request, 'orders/order_create.html', context)
     else:
         form = AddressForm()
+
     context = {
         'form': form,
         'addresses': addresses,
@@ -101,88 +119,128 @@ def order_create(request):
     return render(request, 'orders/order_create.html', context)
 
 
-if settings.SANDBOX:
-    sandbox = 'sandbox'
-    api = 'sandbox'
-else:
-    sandbox = 'www'
-    api = 'api'
+def request_payment(request, order_id):
+    order = get_object_or_404(Order, id=order_id, buyer=request.user, paid=False)
 
-MERCHANT = settings.MERCHANT
-ZP_API_REQUEST = f"https://{api}.zarinpal.com/pg/v4/payment/request.json"
-ZP_API_VERIFY = f"https://{api}.zarinpal.com/pg/v4/payment/verify.json"
-ZP_API_STARTPAY = f"https://{sandbox}.zarinpal.com/pg/StartPay/"
+    amount_rial = order.get_total_cost()
+    user_mobile = request.user.phone if hasattr(request.user, 'phone') and request.user.phone else ''
+    user_email = request.user.email if hasattr(request.user, 'email') and request.user.email else ''
 
-description = 'test',
-email = 'email@example.com'
-mobile = '09123456789'
-CallbackURL = 'http://localhost:8080/payment/verify/'
-
-
-def send_request(request):
-    cart = Cart(request)
-    req_data = {
-        "merchant_id": MERCHANT,
-        "amount": cart.get_post_price(),
-        "callback_url": CallbackURL,
-        "description": description,
-        "metadata": {"mobile": mobile, "email": email}
+    data = {
+        'pin': settings.AQAYEPARDAKHT_PIN,
+        'amount': amount_rial,
+        'callback': settings.AQAYEPARDAKHT_CALLBACK_URL,
+        'card_number': '',
+        'mobile': user_mobile,
+        'email': user_email,
+        'invoice_id': str(order.id),
+        'description': f'پرداخت فاکتور شماره {order.id} از فروشگاه شما'
     }
-    req_header = {"accept": "application/json",
-                  "content-type": "application/json"}
-    req = requests.post(url=ZP_API_REQUEST, data=json.dumps(
-        req_data), headers=req_header)
-    print("ZarinPal Response:", req.json())
-    authority = req.json()['data']['authority']
-    if len(req.json()['errors']) == 0:
-        return redirect(ZP_API_STARTPAY + authority)
-    else:
-        e_code = req.json()['errors']['code']
-        e_message = req.json()['errors']['message']
-        return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
 
+    try:
+        response = requests.post(settings.AQAYEPARDAKHT_CREATE_URL, data=data)
+        json_data = response.json()
 
-def verify(request):
-    cart = Cart(request)
-    t_status = request.GET.get('Status')
-    t_authority = request.GET['Authority']
-    if request.GET.get('Status') == 'OK':
-        req_header = {"accept": "application/json",
-                      "content-type": "application/json"}
-        req_data = {
-            "merchant_id": MERCHANT,
-            "amount": cart.get_final_price(),
-            "authority": t_authority
-        }
-        req = requests.post(url=ZP_API_VERIFY, data=json.dumps(req_data), headers=req_header)
-        if len(req.json()['errors']) == 0:
-            t_status = req.json()['data']['code']
-            if t_status == 100:
-                return HttpResponse('Transaction success.\nRefID: ' + str(
-                    req.json()['data']['ref_id']
-                ))
-            elif t_status == 101:
-                return HttpResponse('Transaction submitted : ' + str(
-                    req.json()['data']['message']
-                ))
-            else:
-                return HttpResponse('Transaction failed.\nStatus: ' + str(
-                    req.json()['data']['message']
-                ))
+        if response.status_code == 200 and json_data.get('status') == 'success':
+            start_pay_url = settings.AQAYEPARDAKHT_STARTPAY_URL + json_data.get('transid')
+            return redirect(start_pay_url)
         else:
-            e_code = req.json()['errors']['code']
-            e_message = req.json()['errors']['message']
-            return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
+            error_message = json_data.get('code') or json_data.get('message', 'خطای ناشناخته در ایجاد تراکنش')
+            messages.error(request, f'خطا در شروع پرداخت: {error_message}')
+            return redirect('orders:order_detail', order_id=order.id)
+
+    except requests.exceptions.RequestException as e:
+        messages.error(request, f'خطا در ارتباط با درگاه پرداخت: {e}')
+        return redirect('orders:order_detail', order_id=order.id)
+    except json.JSONDecodeError:
+        messages.error(request, 'خطا در خواندن پاسخ درگاه پرداخت.')
+        return redirect('orders:order_detail', order_id=order.id)
+
+
+@csrf_exempt
+def confirm_payment(request):
+    transid = request.POST.get('transid')
+    status = request.POST.get('status')
+    amount_paid_str = request.POST.get('amount')
+    invoice_id = request.POST.get('invoice_id')
+
+    print(f"Raw POST data: {request.POST}")
+    if not transid or not status or not invoice_id:
+        messages.error(request, 'اطلاعات پرداخت ناقص است.')
+        return redirect('orders:order_list')
+
+    try:
+        order = get_object_or_404(Order, id=invoice_id)
+        amount_paid = int(amount_paid_str) if amount_paid_str else order.get_total_cost()
+    except ValueError:
+        messages.error(request, 'مبلغ برگشتی از درگاه نامعتبر است.')
+        return redirect('orders:order_list')
+    except Order.DoesNotExist:
+        messages.error(request, 'سفارش مورد نظر یافت نشد.')
+        return redirect('orders:order_list')
+
+    if status == 'success' or status == '1':
+        data = {
+            'pin': settings.AQAYEPARDAKHT_PIN,
+            'amount': amount_paid,
+            'transid': transid
+        }
+
+        print(f"Sending verification request to {settings.AQAYEPARDAKHT_VERIFY_URL} with data: {data}")
+
+        try:
+            response = requests.post(settings.AQAYEPARDAKHT_VERIFY_URL, data=data)
+            json_data = response.json()
+            print(f"Verification response: {json_data}")
+
+            if response.status_code == 200 and json_data.get('code') == '1':
+                if amount_paid == order.get_total_cost():
+                    order.paid = True
+                    order.status = 'COMPLETED'
+                    order.save()
+
+                    messages.success(request, 'پرداخت با موفقیت انجام شد و سفارش شما ثبت گردید.')
+                    return redirect('orders:order_detail', order_id=order.id)
+                else:
+                    messages.error(request,
+                                   'مبلغ پرداخت شده با مبلغ سفارش مطابقت ندارد. لطفاً با پشتیبانی تماس بگیرید.')
+                    order.status = 'PAYMENT_FAILED_AMOUNT_MISMATCH'
+                    order.save()
+                    return redirect('orders:order_detail', order_id=order.id)
+            else:
+
+                error_message = json_data.get('message',
+                                              f'خطای ناشناخته در تأیید پرداخت. کد: {json_data.get("code", "نامشخص")}')
+                messages.error(request, f'تراکنش تأیید نشد: {error_message}')
+                order.status = 'PAYMENT_VERIFICATION_FAILED'
+                order.save()
+                return redirect('orders:order_detail', order_id=order.id)
+
+        except requests.exceptions.RequestException as e:
+            messages.error(request, f'خطا در ارتباط با درگاه پرداخت در مرحله تأیید: {e}')
+            order.status = 'PAYMENT_VERIFICATION_ERROR'
+            order.save()
+            return redirect('orders:order_detail', order_id=order.id)
+        except json.JSONDecodeError:
+            messages.error(request, 'خطا در خواندن پاسخ تأیید درگاه پرداخت.')
+            order.status = 'PAYMENT_VERIFICATION_ERROR'
+            order.save()
+            return redirect('orders:order_detail', order_id=order.id)
+
     else:
-        return HttpResponse('Transaction failed or canceled by user')
+        messages.error(request, 'پرداخت توسط شما لغو شد یا ناموفق بود.')
+        order.status = 'CANCELLED'
+        order.save()
+        return redirect('orders:order_detail', order_id=order.id)
 
 
 def order_list(request, status=None):
     user = request.user
+    orders_queryset = Order.objects.select_related('order__address', 'buyer').prefetch_related('items__product')
     if status:
-        orders = Order.objects.filter(buyer=user, status=status)
+        orders = orders_queryset.filter(buyer=user, status=status)
     else:
-        orders = Order.objects.filter(buyer=user)
+        orders = orders_queryset.filter(buyer=user)
 
     context = {
         'orders': orders,
@@ -193,10 +251,14 @@ def order_list(request, status=None):
 
 def order_detail(request, order_id):
     try:
-        order = get_object_or_404(Order, id=order_id, buyer=request.user)
+        order = get_object_or_404(
+            Order.objects.select_related('order__address', 'buyer').prefetch_related('items__product'),
+            id=order_id,
+            buyer=request.user
+        )
     except Http404:
         raise Http404()
-    order_items = OrderItem.objects.filter(order=order)
+    order_items = order.items.all()
     context = {
         'order': order,
         'order_items': order_items,

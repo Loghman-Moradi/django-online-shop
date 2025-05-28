@@ -1,7 +1,6 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
-from account.models import ShopUser
 
 
 class Category(models.Model):
@@ -10,7 +9,7 @@ class Category(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(str(self.name))
+            self.slug = slugify(str(self.name), allow_unicode=True)
         super().save(*args, **kwargs)
 
     class Meta:

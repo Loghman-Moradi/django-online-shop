@@ -24,9 +24,12 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if self.pk is not None:
             old_instance = Order.objects.get(pk=self.pk)
-            if old_instance.status != self.status and self.status == "DELIVERED":
-                self.delivery_date = timezone.now()
-        super(Order, self).save(*args, **kwargs)
+            if old_instance.status != self.status:
+                if self.status == "DELIVERED":
+                    self.delivery_date = timezone.now()
+                else:
+                    self.delivery_date = None
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created_at']
@@ -57,23 +60,23 @@ class Order(models.Model):
         return final_price
 
     def get_address(self):
-        if self.order:
-            order_address = self.order
-            return (f"{order_address.address.first_name} {order_address.address.last_name} "
-                    f"{order_address.address.address_line}")
+        if hasattr(self, 'order') and self.order and self.order.address:
+            order_address = self.order.address
+            return (f"{order_address.first_name} {order_address.last_name} "
+                    f"{order_address.address_line}")
         return "nothing"
 
     def get_first_name(self):
-        return f"{self.order.address.first_name}"
+        return self.order.address.first_name if hasattr(self, 'order') and self.order and self.order.address else ""
 
     def get_last_name(self):
-        return f"{self.order.address.last_name}"
+        return self.order.address.last_name if hasattr(self, 'order') and self.order and self.order.address else ""
 
     def get_phone_number(self):
-        return f"{self.order.address.phone_number}"
+        return self.order.address.phone_number if hasattr(self, 'order') and self.order and self.order.address else ""
 
     def __str__(self):
-        return f'order: {self.id}'
+        return f'order: {self.id} - {self.buyer}'
 
 
 class OrderAddress(models.Model):
@@ -95,11 +98,11 @@ class OrderItem(models.Model):
         return self.weight * self.quantity
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.id} - {self.product}"
 
 
 class ReturnedProducts(models.Model):
-    Choice_status = [
+    choice_status = [
         ('UNDER REVIEW', 'UNDER REVIEW'),
         ('CONFIRMATION', 'CONFIRMATION'),
         ('REJECTED', 'REJECTED'),
@@ -111,7 +114,7 @@ class ReturnedProducts(models.Model):
     return_reason = models.TextField(default="Please explain your reason...")
     image = models.ImageField(upload_to='returned_products')
     request_date = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=50, choices=Choice_status, default='UNDER REVIEW')
+    status = models.CharField(max_length=50, choices=choice_status, default='UNDER REVIEW')
 
     class Meta:
         ordering = ['-request_date']
@@ -120,7 +123,7 @@ class ReturnedProducts(models.Model):
         ]
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.id} - {self.user}"
 
 
 

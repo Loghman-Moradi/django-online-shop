@@ -1,19 +1,14 @@
 from django import forms
-from .models import Order, ReturnedProducts
+from .models import ReturnedProducts
+from account.validators import phone_number_validator, validate_unique_phone_number
 
 
 class PhoneVerificationPhone(forms.Form):
-    phone_number = forms.CharField(max_length=11)
+    phone_number = forms.CharField(max_length=11, validators=[phone_number_validator])
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
-
-        if not phone_number.isdigit():
-            raise forms.ValidationError("Phone number must be digit")
-        if len(phone_number) != 11:
-            raise forms.ValidationError("Phone number must be 11 digits")
-        if not phone_number.startswith('09'):
-            raise forms.ValidationError("Phone number must start with 09")
+        validate_unique_phone_number(phone_number)
         return phone_number
 
 

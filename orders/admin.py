@@ -1,7 +1,6 @@
 import jdatetime
 from django.contrib import admin
-from account.models import Address
-from orders.models import OrderItem, Order, OrderAddress, ReturnedProducts
+from orders.models import OrderItem, Order, ReturnedProducts
 import openpyxl
 from django.http import HttpResponse
 import csv
@@ -108,6 +107,10 @@ class OrderAdmin(admin.ModelAdmin):
         'paid'
     )
 
+    def queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related('order__address', 'buyer').prefetch_related('items')
+
     def get_first_name(self, obj):
         return obj.get_first_name()
     get_first_name.short_description = 'First Name'
@@ -141,6 +144,11 @@ class OrderAdmin(admin.ModelAdmin):
 class ReturnedProductsAdmin(admin.ModelAdmin):
     list_display = ('order_item', 'user', 'request_date', 'status')
     list_editable = ['status']
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        return queryset.select_related('order_item__order', 'order_item__product', 'user')
+
 
 
 

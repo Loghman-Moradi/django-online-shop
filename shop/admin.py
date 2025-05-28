@@ -1,11 +1,11 @@
 from django.contrib import admin
-
 from shop.models import *
 
 
 class ProductFeaturesInline(admin.TabularInline):
     model = ProductFeatures
     extra = 1
+
 
 class ImageInline(admin.TabularInline):
     model = Images
