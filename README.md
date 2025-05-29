@@ -17,7 +17,7 @@ This project allows users to have a real online shopping experience and develope
 
 :white_check_mark: Shopping cart: Users can add products to the shopping cart and benefit from features such as saving the shopping cart in the session.
 
-:white_check_mark: Zarin Pal sandbox environment: using Zarin Pal API in the sandbox environment to test the payment process.
+:white_check_mark: Mr. Payment Sandbox Environment: Using the Mr. Payment API in a sandbox environment to conduct testing.
 
 :white_check_mark: Management of addresses: the ability to create and manage multiple addresses for users, including adding, editing and deleting addresses.
 
